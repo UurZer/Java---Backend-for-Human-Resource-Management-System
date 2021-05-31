@@ -21,7 +21,7 @@ public class JobTitle {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="title_id")
-	private int title_id;
+	private int titleId;
 
 	@Column(name="title_name")
 	private String title;
@@ -35,10 +35,10 @@ public class JobTitle {
 	}
 
 	public int getTitle_id() {
-		return title_id;
+		return titleId;
 	}
 
-	public void setTitle_id(int title_id) {
-		this.title_id = title_id;
+	public void setTitle_id(int titleId) {
+		this.titleId = titleId;
 	}
 }
