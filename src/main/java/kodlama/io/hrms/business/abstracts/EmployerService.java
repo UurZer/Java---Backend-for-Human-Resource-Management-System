@@ -10,4 +10,5 @@ import kodlama.io.hrms.entities.concretes.Employer;
 public interface EmployerService {
 	DataResult<List<Employer>> getAll();
 	Result Add(Employer employer);
+	
 }

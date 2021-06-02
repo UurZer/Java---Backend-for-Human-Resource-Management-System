@@ -14,17 +14,14 @@ import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.User;
 
-
-
-
 @RestController
 @RequestMapping("api/users")
-public class UserControllers {
+public class UsersControllers {
 
 	@Autowired
 	private UserService userService;
 
-	public UserControllers(UserService userService) {
+	public UsersControllers(UserService userService) {
 		super();
 		this.userService = userService;
 	}
