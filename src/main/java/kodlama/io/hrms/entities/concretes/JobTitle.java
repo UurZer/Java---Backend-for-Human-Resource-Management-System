@@ -26,10 +26,10 @@ public class JobTitle {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="title_id")
+	@Column(name="title_id",unique = true)
 	private int titleId;
 
-	@Column(name="title_name")
+	@Column(name="title_name",unique = false)
 	private String title;
 
 	@OneToMany(mappedBy = "jobTitle")
@@ -59,11 +59,4 @@ public class JobTitle {
 		this.title = title;
 	}
 
-	public int getTitle_id() {
-		return titleId;
-	}
-
-	public void setTitle_id(int titleId) {
-		this.titleId = titleId;
-	}
 }

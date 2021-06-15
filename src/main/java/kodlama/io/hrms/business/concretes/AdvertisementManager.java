@@ -26,8 +26,8 @@ public class AdvertisementManager implements AdvertisementService{
 	}
 
 	@Override
-	public DataResult<Advertisement> getByTitle_TitleId(int titleId) {
-		return new SuccessDataResult<Advertisement>(this.advertisementDao.getByTitle_TitleId(titleId));
+	public DataResult<List<Advertisement>> getByTitle_TitleId(int titleId) {
+		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.getByJobTitle_TitleId(titleId));
 	}
 
 	@Override
@@ -42,13 +42,13 @@ public class AdvertisementManager implements AdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<Advertisement>> findAllByOrderByDateAscAndStatusTrue(boolean status,Date application_deadline) {
-		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findAllByOrderByapplicationDeadline(status));
+	public DataResult<List<Advertisement>> findAllByOrderByDateAscAndStatusTrue() {
+		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findByStatusTrueOrderByApplicationDeadlineDesc());
 	}
 
 	@Override
-	public DataResult<List<Advertisement>> getByStatusTrueAndEmployer_EmployerId(boolean status, int employerId) {
-		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.getByEmployer_EmployerId(employerId));
+	public DataResult<List<Advertisement>> getByStatusAndEmployer_EmployerId(boolean status, int employerId) {
+		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.getByStatusAndEmployer_EmployerId(status,employerId));
 	}
 	@Override
 	public Result ChangeStatus(Advertisement advertisement,boolean status) {
@@ -62,6 +62,12 @@ public class AdvertisementManager implements AdvertisementService{
 	public DataResult<Advertisement> getByStatusTrueAndAdvertisement_AdvertisementId(boolean status, int advertisementId) {
 		
 		return new SuccessDataResult<Advertisement>(this.advertisementDao.getByid(advertisementId));
+	}
+
+	@Override
+	public DataResult<List<Advertisement>> getAll() {
+		
+		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findAll());
 	}
 
 }

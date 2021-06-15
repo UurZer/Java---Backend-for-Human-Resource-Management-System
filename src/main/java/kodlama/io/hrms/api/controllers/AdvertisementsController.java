@@ -34,20 +34,28 @@ public class AdvertisementsController {
 	}
 	
 	@GetMapping("/findAllByOrderByDateAscAndStatusTrue")
-	public DataResult<List<Advertisement>> findAllByOrderByDateAscAndStatusTrue(@RequestParam("status") boolean status,@RequestParam("applicationDeadline") Date applicationDeadline) {
-		return this.advertisementService.findAllByOrderByDateAscAndStatusTrue(status,applicationDeadline);
+	public DataResult<List<Advertisement>> findAllByOrderByDateAscAndStatusTrue() {
+		return this.advertisementService.findAllByOrderByDateAscAndStatusTrue();
 	}
 	
 	@GetMapping("/getByStatusTrueAndEmployer_EmployerId")
-	public DataResult<List<Advertisement>> getByStatusTrueAndEmployer_EmployerId(@RequestParam("status") boolean status,@RequestParam int employerId) {
-		return this.advertisementService.getByStatusTrueAndEmployer_EmployerId(status,employerId);
+	public DataResult<List<Advertisement>> getByStatusTrueAndEmployer_EmployerId(@RequestParam int employerId,@RequestParam("status") boolean status) {
+		return this.advertisementService.getByStatusAndEmployer_EmployerId(status,employerId);
 	}
 	
 	@GetMapping("/getByTitle_TitleId")
-	public DataResult<Advertisement> getByTitle_TitleId(@RequestBody int titleId) {
+	public DataResult<List<Advertisement>> getByTitle_TitleId(@RequestParam("titleId") int titleId) {
 		return this.advertisementService.getByTitle_TitleId(titleId);
 	}
 	
+	@GetMapping("/getall")
+	public DataResult<List<Advertisement>> getAll() {
+		return this.advertisementService.getAll();
+	}
 	
+	@PostMapping("/changeStatus")
+	public Result changeStatus(@RequestBody Advertisement advertisement,boolean status) {
+		return this.advertisementService.ChangeStatus(advertisement,status);
+	}
 	
 }

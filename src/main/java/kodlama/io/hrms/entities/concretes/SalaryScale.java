@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="salaryScale")
+@Table(name="salary_scale")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
@@ -26,13 +27,13 @@ public class SalaryScale {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="scale_id")
+	@Column(name="scale_id",unique = true)
 	private int scaleId;
 	
-	@Column(name="max")
+	@Column(name="max",unique = false)
 	private String max;
 	
-	@Column(name="min")
+	@Column(name="min",unique = false)
 	private String min;
 
 	

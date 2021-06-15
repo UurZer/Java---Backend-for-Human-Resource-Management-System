@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,19 +26,20 @@ import lombok.NoArgsConstructor;
 public class City {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="city_id")
+	@Column(name="city_id",unique = true)
 	private int id;
 	
-	@Column(name="code")
+	@Column(name="code",unique = false)
 	private String code;
 	
-	@Column(name="name")
+	@Column(name="name",unique = false)
 	private String name;
 	
 
 	@OneToMany(mappedBy = "city")
 	private List<Advertisement> Advertisements;
-	
+
+
 
 	public List<Advertisement> getAdvertisements() {
 		return Advertisements;

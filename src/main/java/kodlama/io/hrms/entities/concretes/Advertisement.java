@@ -11,19 +11,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
-@Table(name="advertisement")
+@Table(name="advertisements")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) 
 public class Advertisement {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="advertisement_id")
+	@Column(name="advertisement_id",unique=true)
 	private int id;
 	
 	@ManyToOne()
@@ -54,16 +59,6 @@ public class Advertisement {
 	@Column(name="status")
 	private boolean status;
 
-	
-	public Employer getEmployer() {
-		return employer;
-	}
-
-	public void setEmployer(Employer employer) {
-		this.employer = employer;
-	}
-
-	
 	public int getId() {
 		return id;
 	}
@@ -78,6 +73,14 @@ public class Advertisement {
 
 	public void setJobTitle(JobTitle jobTitle) {
 		this.jobTitle = jobTitle;
+	}
+
+	public Employer getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 
 	public String getJobDescription() {
@@ -127,8 +130,6 @@ public class Advertisement {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
-	
 	
 	
 }

@@ -14,8 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @Table(name="employers")
@@ -26,34 +28,26 @@ public class Employer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="employer_id")
+	@Column(name="employer_id",unique = true)
 	private int employerId;
 	
-	@Column(name="company_name")
+	@Column(name="company_name",unique = false)
 	private String companyName;
 	
-	@Column(name="web_addres")
+	@Column(name="web_addres",unique = false)
 	private String webSite;
 	
-	@Column(name="email")
+	@Column(name="email",unique = false)
 	private String email;
 
-	@Column(name="phone_number")
+	@Column(name="phone_number",unique = false)
 	private String phoneNumber;
 	
-	@Column(name="password")
+	@Column(name="password",unique = false)
 	private String password;
 	
 	@OneToMany(mappedBy = "employer")
-	private List<Advertisement> advertisements;
-
-	public List<Advertisement> getAdvertisement() {
-		return advertisements;
-	}
-
-	public void setAdvertisement(List<Advertisement> advertisements) {
-		this.advertisements = advertisements;
-	}
+	private List<Advertisement> Advertisements;
 
 	public int getEmployerId() {
 		return employerId;
@@ -103,10 +97,13 @@ public class Employer {
 		this.password = password;
 	}
 
-	
-	
-	
+	public List<Advertisement> getAdvertisements() {
+		return Advertisements;
+	}
 
-	
+	public void setAdvertisements(List<Advertisement> advertisements) {
+		Advertisements = advertisements;
+	}
+
 	
 }
