@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements","university"})
 public class City {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,7 +39,17 @@ public class City {
 	@OneToMany(mappedBy = "city")
 	private List<Advertisement> Advertisements;
 
+	@OneToMany(mappedBy = "city")
+	private List<University> university;
+	
 
+	public List<University> getUniversity() {
+		return this.university;
+	}
+
+	public void setUniversity(List<University> university) {
+		this.university = university;
+	}
 
 	public List<Advertisement> getAdvertisements() {
 		return Advertisements;
