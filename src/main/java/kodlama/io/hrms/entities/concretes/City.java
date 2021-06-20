@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements","university"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements","universities"})
 public class City {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,29 +34,19 @@ public class City {
 	
 	@Column(name="name",unique = false)
 	private String name;
-	
 
 	@OneToMany(mappedBy = "city")
 	private List<Advertisement> Advertisements;
 
 	@OneToMany(mappedBy = "city")
-	private List<University> university;
-	
+	private List<University> universities;
 
-	public List<University> getUniversity() {
-		return this.university;
+	public List<University> getUniversities() {
+		return universities;
 	}
 
-	public void setUniversity(List<University> university) {
-		this.university = university;
-	}
-
-	public List<Advertisement> getAdvertisements() {
-		return Advertisements;
-	}
-
-	public void setAdvertisements(List<Advertisement> advertisements) {
-		Advertisements = advertisements;
+	public void setUniversities(List<University> universities) {
+		this.universities = universities;
 	}
 
 	public int getId() {
@@ -82,5 +72,17 @@ public class City {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<Advertisement> getAdvertisements() {
+		return Advertisements;
+	}
+
+	public void setAdvertisements(List<Advertisement> advertisements) {
+		Advertisements = advertisements;
+	}
+
+
+	
+
 	
 }

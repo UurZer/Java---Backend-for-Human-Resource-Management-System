@@ -20,60 +20,51 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="universities")
+@Table(name="university_departments")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","educationInformation"}) 
-public class University {
-
+public class UniversityDepartment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="university_id",unique=true)
-	private int universityId;
+	@Column(name="department_id",unique = true)
+	private int departmendId;
 	
-	@Column(name="university_name")
-	private String universityName;
+	@Column(name="department_name",unique = true)
+	private String departmentName;
 	
 	@ManyToOne()
-	@JoinColumn(name="city_id")
-	private City city;
+	@JoinColumn(name="faculty_id")
+	private Faculty faculty;
 	
-	@Column(name="status")
-	private int status;
-	
-	@OneToMany(mappedBy="university")
+	@OneToMany(mappedBy="universityDepartment")
 	private List<EducationInformation> educationInformation;
+	
+	@Column(name="status",unique = true)
+	private int status;
 
-	public int getUniversityId() {
-		return universityId;
+	public int getDepartmendId() {
+		return departmendId;
 	}
 
-	public void setUniversityId(int universityId) {
-		this.universityId = universityId;
+	public void setDepartmendId(int departmendId) {
+		this.departmendId = departmendId;
 	}
 
-	public String getUniversityName() {
-		return universityName;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setUniversityName(String universityName) {
-		this.universityName = universityName;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
-	public City getCity() {
-		return city;
+	public Faculty getFaculty() {
+		return faculty;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
 	}
 
 	public List<EducationInformation> getEducationInformation() {
@@ -84,4 +75,12 @@ public class University {
 		this.educationInformation = educationInformation;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 }

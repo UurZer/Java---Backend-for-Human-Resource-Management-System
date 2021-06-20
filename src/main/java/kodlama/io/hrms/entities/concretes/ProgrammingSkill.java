@@ -1,5 +1,7 @@
 package kodlama.io.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,53 +17,46 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
-@AllArgsConstructor
-@Table(name="social_media")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resume"})
+@Table(name="programming_skills")
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resume"}) 
 
-public class SocialMedia {
-	
+public class ProgrammingSkill {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="social_media_id",unique=true)
-	private int mediaId;
-	
-	@Column(name="social_media_name",nullable=false)
-	private String mediaName;
-	
-	@Column(name="social_media_address",nullable=false)
-	private String mediaAdress;
-	
+	@Column(name="skill_id",unique=true)
+	private int skillId;
+
+	@Column(name="skill_name")
+	private String skillName;
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "resume_id")
 	private Resume resume;
 
-	public int getMediaId() {
-		return mediaId;
+	public int getSkillId() {
+		return skillId;
 	}
 
-	public void setMediaId(int mediaId) {
-		this.mediaId = mediaId;
+	public void setSkillId(int skillId) {
+		this.skillId = skillId;
 	}
 
-	public String getMediaName() {
-		return mediaName;
+	public String getSkillName() {
+		return skillName;
 	}
 
-	public void setMediaName(String mediaName) {
-		this.mediaName = mediaName;
-	}
-
-	public String getMediaAdress() {
-		return mediaAdress;
-	}
-
-	public void setMediaAdress(String mediaAdress) {
-		this.mediaAdress = mediaAdress;
+	public void setSkillName(String skillName) {
+		this.skillName = skillName;
 	}
 
 	public Resume getResume() {
@@ -71,5 +66,4 @@ public class SocialMedia {
 	public void setResume(Resume resume) {
 		this.resume = resume;
 	}
-	
 }

@@ -25,8 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name="work_experiences")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resume"}) 
 public class WorkExperience {
 
 	@Id
@@ -43,15 +42,16 @@ public class WorkExperience {
 	@Column(name="starting_date" ,nullable=false)
 	private Date startingDate;
 	
-
 	@Column(name="end_date" ,nullable=true)
 	private Date endDate;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@Column(name="status" ,nullable=true)
+	private String status;
+	
 	@ManyToOne()
 	@JoinColumn(name = "resume_id")
-	private List<Resume> resume;
-
+	private Resume resume;
+	
 	public int getExperienceId() {
 		return experienceId;
 	}
@@ -92,12 +92,24 @@ public class WorkExperience {
 		this.endDate = endDate;
 	}
 
-	public List<Resume> getResume() {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Resume getResume() {
 		return resume;
 	}
 
-	public void setResume(List<Resume> resume) {
+	public void setResume(Resume resume) {
 		this.resume = resume;
 	}
+
+
+
+	
 	
 }
