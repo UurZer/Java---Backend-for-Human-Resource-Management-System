@@ -60,4 +60,8 @@ public class AdvertisementsController {
 		return this.advertisementService.ChangeStatus(advertisement,status);
 	}
 	
+	@GetMapping("findByIsVerifiedTrueAndStatusTrue")
+	public DataResult<List<Advertisement>> findByIsVerifiedTrueAndStatusTrue(){
+		return this.advertisementService.findByIsVerifiedTrueAndStatusTrue();
+	}
 }

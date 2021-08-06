@@ -1,6 +1,8 @@
 package kodlama.io.hrms.entities.concretes;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +28,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) 
 public class Advertisement {
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="advertisement_id",unique=true)
@@ -58,6 +63,56 @@ public class Advertisement {
 	
 	@Column(name="status")
 	private boolean status;
+	
+	@Column(name="is_verified")
+	private boolean isVerified;
+
+	@Column(name="way_of_working")
+	private String wayOfWorking;
+	
+	@Column(name="working_time")
+	private String workingTime;
+	
+	@Column(name="position_count")
+	private int positionCount;
+
+	@Column(name="created_date")
+	private LocalDate createdDate;
+	
+	public Advertisement() {
+		super();
+		this.createdDate = java.time.LocalDate.now();
+	}	
+	public int getPositionCount() {
+		return positionCount;
+	}
+	public void setPositionCount(int positionCount) {
+		this.positionCount = positionCount;
+	}
+
+	public String getWayOfWorking() {
+		return wayOfWorking;
+	}
+
+	public void setWayOfWorking(String wayOfWorking) {
+		this.wayOfWorking = wayOfWorking;
+	}
+
+	public String getWorkingTime() {
+		return workingTime;
+	}
+
+	public void setWorkingTime(String workingTime) {
+		this.workingTime = workingTime;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
 
 	public int getId() {
 		return id;

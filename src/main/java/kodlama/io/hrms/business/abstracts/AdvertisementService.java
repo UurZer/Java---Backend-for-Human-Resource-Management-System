@@ -23,4 +23,6 @@ public interface AdvertisementService {
 	Result ChangeStatus(Advertisement advertisement,boolean status);
 	
 	DataResult<List<Advertisement>> getAll();
-}
+	
+	DataResult<List<Advertisement>> findByIsVerifiedTrueAndStatusTrue();
+ }

@@ -70,4 +70,10 @@ public class AdvertisementManager implements AdvertisementService{
 		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findAll());
 	}
 
+	@Override
+	public DataResult<List<Advertisement>> findByIsVerifiedTrueAndStatusTrue() {
+
+		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findByIsVerifiedTrueAndStatusTrue());
+	}
+
 }

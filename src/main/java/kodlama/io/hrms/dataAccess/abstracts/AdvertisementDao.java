@@ -19,7 +19,8 @@ public interface AdvertisementDao extends JpaRepository<Advertisement,Integer>{
 
 	List<Advertisement> findByStatusTrueOrderByApplicationDeadlineDesc();//Req 9 : Sistemdeki tüm aktif iş ilanları tarihe göre listelenebilmelidir.
 	
-	//List<Advertisement> findAllByOrderByapplicationDeadline();
+	List<Advertisement> findByIsVerifiedTrueAndStatusTrue();
+	
 	List<Advertisement> getByStatusAndEmployer_EmployerId(boolean status ,int employerId);//Req 10 : Sistemde bir firmaya ait tüm aktif iş ilanları listelenebilmelidir.
 
 	Advertisement getByid(int advertisementId);//Req 11 : Sistemde bir firmaya ait tüm aktif iş ilanları listelenebilmelidir.
