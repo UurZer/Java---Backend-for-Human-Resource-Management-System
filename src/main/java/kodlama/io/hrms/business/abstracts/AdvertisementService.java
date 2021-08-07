@@ -25,4 +25,6 @@ public interface AdvertisementService {
 	DataResult<List<Advertisement>> getAll();
 	
 	DataResult<List<Advertisement>> findByIsVerifiedTrueAndStatusTrue();
+	
+	DataResult<Advertisement> getById(int id);
  }

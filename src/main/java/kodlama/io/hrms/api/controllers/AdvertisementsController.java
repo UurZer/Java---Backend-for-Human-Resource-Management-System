@@ -50,6 +50,11 @@ public class AdvertisementsController {
 		return this.advertisementService.getByTitle_TitleId(titleId);
 	}
 	
+	@GetMapping("/getById")
+	public DataResult<Advertisement> getById(@RequestParam("id") int id) {
+		return this.advertisementService.getById(id);
+	}
+	
 	@GetMapping("/getall")
 	public DataResult<List<Advertisement>> getAll() {
 		return this.advertisementService.getAll();

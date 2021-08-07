@@ -76,4 +76,10 @@ public class AdvertisementManager implements AdvertisementService{
 		return new SuccessDataResult<List<Advertisement>>(this.advertisementDao.findByIsVerifiedTrueAndStatusTrue());
 	}
 
+	@Override
+	public DataResult<Advertisement> getById(int id) {
+
+		return new SuccessDataResult<Advertisement>(this.advertisementDao.getByid(id));
+	}
+
 }
