@@ -72,9 +72,6 @@ public class Advertisement {
 	
 	@Column(name="working_time")
 	private String workingTime;
-	
-	@Column(name="position_count")
-	private int positionCount;
 
 	@Column(name="created_date")
 	private LocalDate createdDate;
@@ -83,12 +80,6 @@ public class Advertisement {
 		super();
 		this.createdDate = java.time.LocalDate.now();
 	}	
-	public int getPositionCount() {
-		return positionCount;
-	}
-	public void setPositionCount(int positionCount) {
-		this.positionCount = positionCount;
-	}
 
 	public String getWayOfWorking() {
 		return wayOfWorking;
