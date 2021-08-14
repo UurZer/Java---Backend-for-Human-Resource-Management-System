@@ -75,11 +75,7 @@ public class Advertisement {
 
 	@Column(name="created_date")
 	private LocalDate createdDate;
-	
-	public Advertisement() {
-		super();
-		this.createdDate = java.time.LocalDate.now();
-	}	
+
 
 	public String getWayOfWorking() {
 		return wayOfWorking;
