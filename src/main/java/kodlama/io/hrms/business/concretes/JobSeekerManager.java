@@ -37,9 +37,9 @@ public class JobSeekerManager implements JobSeekerService{
 
 	@Override
 	public Result Add(JobSeeker jobSeeker) {
-		if(this.checkIfİsThereUser(jobSeeker.getUserId()))
+		if(this.checkIfİsThereUser(jobSeeker.getUser().getUserId()))
 		{
-			if(!this.checkIfUserAlreadySeeker(jobSeeker.getUserId()))
+			if(!this.checkIfUserAlreadySeeker(jobSeeker.getUser().getUserId()))
 			{
 				this.jobSeekerDao.save(jobSeeker);							
 				return new SuccessResult("İş arayanlara eklendi");
@@ -61,8 +61,12 @@ public class JobSeekerManager implements JobSeekerService{
 	private boolean checkIfUserAlreadySeeker(int userId){
 
 		return this.getAll().getData().stream()
-				.filter(u -> u.getUserId() == userId)
+				.filter(u -> u.getUser().getUserId() == userId)
 				.findFirst().isPresent();
+	}
+	@Override
+	public DataResult<JobSeeker> getBySeekerId(int seekerId) {
+		return new SuccessDataResult<JobSeeker>("İş arayan listelendi.",this.jobSeekerDao.getBySeekerId(seekerId));
 	}
 
 }
