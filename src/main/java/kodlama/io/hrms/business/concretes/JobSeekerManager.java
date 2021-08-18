@@ -20,12 +20,10 @@ import kodlama.io.hrms.entities.concretes.JobSeeker;
 public class JobSeekerManager implements JobSeekerService{
 	
 
-	public UserService userService;
-	public JobSeekerDao jobSeekerDao;
+		JobSeekerDao jobSeekerDao;
 	@Autowired
-	public JobSeekerManager(UserService userService,JobSeekerDao jobSeekerDao) {
+	public JobSeekerManager(JobSeekerDao jobSeekerDao) {
 		super();
-		this.userService = userService;
 		this.jobSeekerDao=jobSeekerDao;
 	}
 	public JobSeekerManager() {}
@@ -37,7 +35,10 @@ public class JobSeekerManager implements JobSeekerService{
 
 	@Override
 	public Result Add(JobSeeker jobSeeker) {
-		if(this.checkIfİsThereUser(jobSeeker.getUser().getUserId()))
+		this.jobSeekerDao.save(jobSeeker);
+		
+		return new SuccessResult();
+		/*if(this.checkIfİsThereUser(jobSeeker.getUser().getUserId()))
 		{
 			if(!this.checkIfUserAlreadySeeker(jobSeeker.getUser().getUserId()))
 			{
@@ -48,22 +49,23 @@ public class JobSeekerManager implements JobSeekerService{
 		}
 		else
 			return new SuccessResult("Böyle bir kullanıcı yok.");
-		
+		*/
 	}
 	
-	private boolean checkIfİsThereUser(int userId) 
-	{
-		return this.userService.getAll().getData().stream()
-				.filter(u -> u.getUserId() == userId)
-				.findFirst().isPresent();
-	}
+//	private boolean checkIfİsThereUser(int userId) 
+//	{
+//		return this.userService.getAll().getData().stream()
+//				.filter(u -> u.getUserId() == userId)
+//				.findFirst().isPresent();
+//	}
 	
-	private boolean checkIfUserAlreadySeeker(int userId){
-
-		return this.getAll().getData().stream()
-				.filter(u -> u.getUser().getUserId() == userId)
-				.findFirst().isPresent();
-	}
+//	private boolean checkIfUserAlreadySeeker(int userId){
+//
+//		return this.getAll().getData().stream()
+//				.filter(u -> u.getUser().getUserId() == userId)
+//				.findFirst().isPresent();
+//	}
+	
 	@Override
 	public DataResult<JobSeeker> getBySeekerId(int seekerId) {
 		return new SuccessDataResult<JobSeeker>("İş arayan listelendi.",this.jobSeekerDao.getBySeekerId(seekerId));

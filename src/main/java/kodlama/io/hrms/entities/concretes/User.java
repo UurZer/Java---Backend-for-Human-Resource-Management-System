@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name="users")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","resumes","jobSeekers"})
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User {
 
 	@Id
@@ -50,20 +50,8 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-	@OneToMany(mappedBy="user")
-	private List<Resume> resumes;
+
 	
-	@OneToOne(mappedBy="user")
-	private JobSeeker jobSeekers;
-
-	public JobSeeker getJobSeekers() {
-		return jobSeekers;
-	}
-
-	public void setJobSeekers(JobSeeker jobSeeker) {
-		this.jobSeekers = jobSeeker;
-	}
-
 	public int getUserId() {
 		return userId;
 	}
@@ -118,13 +106,5 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public List<Resume> getResumes() {
-		return resumes;
-	}
-
-	public void setResumes(List<Resume> resumes) {
-		this.resumes = resumes;
 	}
 }
